@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
     //TODO() inject all of this
     val adapter = UserAdapter()
     val service = Service()
-    lateinit var job: Job
+    var parentJob = Job()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         list.adapter = adapter
-        GlobalScope.launch {
+        GlobalScope.launch(parentJob) {
             loadData()
         }
     }
@@ -39,6 +39,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        job.cancel()
+        parentJob.cancel()
     }
 }
