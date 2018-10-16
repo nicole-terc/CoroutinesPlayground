@@ -6,14 +6,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-import nstv.coroutinesplayground.data.RxService
+import nstv.coroutinesplayground.data.Service
 import nstv.coroutinesplayground.list.UserAdapter
 
 class MainActivity : AppCompatActivity() {
 
     //TODO() inject all of this
     val adapter = UserAdapter()
-    val service = RxService()
+    val service = Service()
     val compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
