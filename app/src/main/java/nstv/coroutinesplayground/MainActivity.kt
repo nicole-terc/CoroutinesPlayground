@@ -6,6 +6,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.experimental.Dispatchers
+import kotlinx.coroutines.experimental.withContext
 import nstv.coroutinesplayground.data.Service
 import nstv.coroutinesplayground.list.UserAdapter
 
@@ -25,9 +27,10 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         list.adapter = adapter
         loadData()
+
     }
 
-    fun loadData() {
+        fun loadData() {
         //Only angry users
         compositeDisposable.add(
             service.getAngryUserIds()
@@ -37,6 +40,16 @@ class MainActivity : AppCompatActivity() {
                 .subscribe(adapter::updateItems)
         )
     }
+
+//    suspend fun loadData() {
+//        //Only angry users
+//        val angryUsersIds = service.getAngryUserIds()
+//        val angryUsers = service.getUsers(angryUsersIds)
+//
+//        withContext(Dispatchers.Main) {
+//            adapter.updateItems(angryUsers)
+//        }
+//    }
 
     override fun onStop() {
         super.onStop()

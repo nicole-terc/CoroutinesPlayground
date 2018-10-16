@@ -9,6 +9,7 @@ import nstv.coroutinesplayground.model.User
 class Service {
     private val server = DummyServer()
 
+
     fun getUsers(): Single<List<User>> {
         //Magical lengthy method to get users
         return Single.just(server.getUsers())
@@ -21,4 +22,18 @@ class Service {
     fun getAngryUserIds(): Single<List<Int>> {
         return Single.just(server.getAngryUserIds())
     }
+
+
+//    suspend fun getUsers(): List<User> {
+//        return server.getUsers()
+//    }
+//
+//    suspend fun getUsers(ids: List<Int>): List<User> {
+//        return server.getUsers(ids)
+//    }
+//
+//    suspend fun getAngryUserIds(): List<Int> {
+//        return server.getAngryUserIds()
+//    }
+//
 }
